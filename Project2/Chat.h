@@ -6,13 +6,13 @@
 
 struct UserLoginExp :public  exception {
 	const char* what() const noexcept override {
-		return "Этот логин занят, придумайте другой";
+		return "Р­С‚РѕС‚ Р»РѕРіРёРЅ Р·Р°РЅСЏС‚, РїСЂРёРґСѓРјР°Р№С‚Рµ РґСЂСѓРіРѕР№";
 	}
 };
 
 struct UserNameExp :public  exception {
 	const char* what()const noexcept override {
-		return "Это имя занято, придумайте другое";
+		return "Р­С‚Рѕ РёРјСЏ Р·Р°РЅСЏС‚Рѕ, РїСЂРёРґСѓРјР°Р№С‚Рµ РґСЂСѓРіРѕРµ";
 	}
 };
 
