@@ -29,7 +29,7 @@ void Chat::showLoginMenu() {
 	currentUser_ = nullptr;
 	char operation;
 	do {
-		cout << "Âûáåðèòå íóæíîå äåéñòâèå è ââåäèòå öèôðó" << endl << "1 - Àâòîðèçàöèÿ" << endl << "2 - Ðåãèñòðàöèÿ" << endl << "0 - Çàâåðøåíèå ðàáîòû" << endl;
+		cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½ÑƒÐ¶Ð½Ð¾Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¸ Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†Ð¸Ñ„Ñ€Ñƒ" << endl << "1 - ÐÐ²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ" << endl << "2 - Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ" << endl << "0 - Ð—Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹" << endl;
 		cin >> operation;
 		switch (operation) {
 		case '1':
@@ -59,17 +59,17 @@ void Chat::login() {
 	char operation;
 
 	do {
-		cout << "Ëîãèí:";
+		cout << "Ð›Ð¾Ð³Ð¸Ð½:";
 		cin >> login;
-		cout << "Ïàðîëü:";
+		cout << "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ:";
 		cin >> password;
 
 		currentUser_ = getUserByLogin(login);
 		if (currentUser_ == nullptr || (password != currentUser_->GetUserPassword()))
 		{
 			currentUser_ = nullptr;
-			cout << "Íåðíûé ëîãèí èëè ïàðîëü" << endl;
-			cout << "Íàæìèòå 0 äëÿ âûõîäà èëè ëþáóþ êëàâèøó äëÿ ïîâòîðà";
+			cout << "ÐÐµÑ€Ð½Ñ‹Ð¹ Ð»Ð¾Ð³Ð¸Ð½ Ð¸Ð»Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ" << endl;
+			cout << "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ 0 Ð´Ð»Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð° Ð¸Ð»Ð¸ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ Ð´Ð»Ñ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð°";
 			cin >> operation;
 			if (operation == '0')
 				break;
@@ -80,18 +80,18 @@ void Chat::login() {
 void Chat::showChat()const {
 	string from;
 	string to;
-	cout << " ×ÀÒ " << endl;
+	cout << " Ð§ÐÐ¢ " << endl;
 	for (auto& mess : MsgList_) {
 		if (currentUser_->GetUserLogin() == mess.GetFrom() || currentUser_->GetUserLogin() == mess.GetTo() || mess.GetTo() == "all") {
-			from = (currentUser_->GetUserLogin() == mess.GetFrom()) ? " îò ìåíÿ " : getUserByLogin(mess.GetFrom())->GetUserName();
+			from = (currentUser_->GetUserLogin() == mess.GetFrom()) ? " Ð¾Ñ‚ Ð¼ÐµÐ½Ñ " : getUserByLogin(mess.GetFrom())->GetUserName();
 			if (mess.GetTo() == "all") {
 				to = "all";
 			}
 			else {
-				to = (currentUser_->GetUserLogin() == mess.GetTo()) ? " äëÿ ìåíÿ " : getUserByLogin(mess.GetTo())->GetUserName();
+				to = (currentUser_->GetUserLogin() == mess.GetTo()) ? " Ð´Ð»Ñ Ð¼ÐµÐ½Ñ " : getUserByLogin(mess.GetTo())->GetUserName();
 			}
-			cout << "Ñîîáùåíèå " << from << " äëÿ " << to << endl;
-			cout << "Ñîîáùåíèå:" << mess.Gettxt() << endl;
+			cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ " << from << " Ð´Ð»Ñ " << to << endl;
+			cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ:" << mess.Gettxt() << endl;
 		}
 	}
 }
@@ -99,11 +99,11 @@ void Chat::showChat()const {
 void Chat::signUp() {
 	string login, password, name;
 	double time;
-	cout << "Ëîãèí: ";
+	cout << "Ð›Ð¾Ð³Ð¸Ð½: ";
 	cin >> login;
-	cout << "Ïàðîëü: ";
+	cout << "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ: ";
 	cin >> password;
-	cout << "Èìÿ: ";
+	cout << "Ð˜Ð¼Ñ: ";
 	cin >> name;
 	if (getUserByLogin(login) || login == "all")
 	{
@@ -121,9 +121,9 @@ void Chat::signUp() {
 
 void Chat::showUserMenu() {
 	char operation;
-	cout << "Çäðàâñòâóéòå, " << currentUser_->GetUserName() << endl;
+	cout << "Ð—Ð´Ñ€Ð°Ð²ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ, " << currentUser_->GetUserName() << endl;
 	while (currentUser_) {
-		cout << "Âûáåðèòå íóæíîå äåéñòâèå è ââåäèòå öèôðó" << endl << "1 - Ïðîñìîòð ÷àòà" << endl << "2 - Íàïèñàòü ñîîáùåíèå" << endl << "3 - Âûõîä" << endl << "0 - Âûõîä èç àêêàóíòà";
+		cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½ÑƒÐ¶Ð½Ð¾Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¸ Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†Ð¸Ñ„Ñ€Ñƒ" << endl << "1 - ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ Ñ‡Ð°Ñ‚Ð°" << endl << "2 - ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ" << endl << "3 - Ð’Ñ‹Ñ…Ð¾Ð´" << endl << "0 - Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°";
 		cout << endl;
 		cin >> operation;
 		switch (operation) {
@@ -140,7 +140,7 @@ void Chat::showUserMenu() {
 			currentUser_ = nullptr;
 			break;
 		default:
-			cout << "Íåâåðíûé ââîä" << endl;
+			cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´" << endl;
 			break;
 		}
 	}
@@ -149,13 +149,13 @@ void Chat::showUserMenu() {
 void Chat::addMsg() {
 	string to, txt;
 
-	cout << "Ñîîáùåíèå äëÿ (èìÿ èëè äëÿ âñåõ (ââåäèòå all))";
+	cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð´Ð»Ñ (Ð¸Ð¼Ñ Ð¸Ð»Ð¸ Ð´Ð»Ñ Ð²ÑÐµÑ… (Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ all))";
 	cin >> to;
-	cout << "Ñîîáùåíèå: ";
+	cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ: ";
 	cin.ignore();
 	getline(cin, txt);
 	if (!(to == "all" || getUserByName(to))) {
-		cout << " Îøèáêà îòïðàâêè " << to << endl;
+		cout << " ÐžÑˆÐ¸Ð±ÐºÐ° Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ¸ " << to << endl;
 		return;
 	}
 	if (to == "all")
@@ -165,7 +165,7 @@ void Chat::addMsg() {
 }
 
 void Chat::showAllUsersName()const {
-	cout << " ÏÎËÜÇÎÂÀÒÅËÜ " << endl;
+	cout << " ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð¬ " << endl;
 	for (auto& user : userList_) {
 		cout << user.GetUserName();
 		if (currentUser_->GetUserLogin() == user.GetUserLogin())
